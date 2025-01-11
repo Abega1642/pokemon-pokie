@@ -1,80 +1,69 @@
 import { useState } from 'react'
 import './App.css'
-import { baseUrl } from './api';
+import { baseUrl, imageUrl } from './tools/url';
 import axios from 'axios';
+import SearchBar from './components/search';
+import Button from './components/button';
+import Display from './components/display';
+import { getRandomNum, format } from './tools/num';
 
 function App() {
   const [pokemon, setPokemon] = useState<string>("");
-  const [pokie, setPokie] = useState<string>(""); 
-  const img : string = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/";
+  const [imgUrl, setImgUrl] = useState<string>(""); 
+  const [show, setShow] = useState<boolean>(false);
 
   async function search(){
       try {
         const searchValue = await axios.get(`${baseUrl}${pokemon}`);
-        setPokie(img + searchValue.data.id + ".png");
+        setImgUrl(`${imageUrl}${searchValue.data.id}.png`);
+        setShow(true);
+
         console.log(searchValue.data);
       
-      } catch (error) {
+      } catch (error: any) {
         if (error.response.status == 404) {
           alert(`Pokemon ${pokemon} not found`);
+          setShow(false);
         }
       }
   }
 
-  const random = ():number => {
-    return Math.floor(Math.random() * 900 + 1);
-  }
-
   async function getRandomPoke(){
     try {
-      const rand = random();
-      if (rand < 100)
-        rand = "0" + rand;
-      const searchValue = await axios.get(`${baseUrl}${rand}`);
+      const randId = randomId()
+      const searchValue = await axios.get(`${baseUrl}${randId}`);
+
       setPokemon(searchValue.data.name)
-      
-      setPokie(img + searchValue.data.id+ ".png")
-      console.log(pokie);
+      setImgUrl(`${imageUrl}${searchValue.data.id}.png`);
+      setShow(true);
       
       console.log(searchValue.data);
-      return rand;
+
+      return randId;
       
-    } catch (error) {
+    } catch (error : any) {
       if (error.response.status == 404) {
         alert(`Pokemon ${pokemon} not found`);
+        setShow(false);
       }
     }
   }
 
-  
+  const randomId = (): string => {
+    return format(getRandomNum(1000), 3);
+  }
+
 
   return (
     <>
       <div className='box'>
         <img className='pokeball' src="img.png" alt="pokeball"/>
         <div>
-          <input 
-            className='input-search'
-            type="text" 
-            value={pokemon}
-            onChange={(e) => setPokemon(e.target.value)}
-          />
-          <button
-            onClick={search}
-          >
-            search
-          </button>
-          <button
-            onClick={getRandomPoke}
-          >
-            Random
-          </button>
+          <SearchBar pokemon={pokemon} setPokemon={setPokemon}></SearchBar>
+          <Button label="Search" action={search} />
+          <Button label="Random" action={getRandomPoke}/>
         </div>
-        <div>
-          <h1>{pokemon.toUpperCase()}</h1>
-          <img src={`${pokie}`} alt={pokemon+ " image"}/>
-        </div>
-
+        <Display bool={show} imageUrl={imgUrl} pokemon={pokemon}/>
       </div>
     </>
   )
