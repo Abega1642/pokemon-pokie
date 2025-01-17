@@ -1,0 +1,77 @@
+.details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+	width: 100dvw;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffcb05, #3b4cca);
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+.back-button {
+    background-color: #ffcb05;
+    color: #3b4cca;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: #3b4cca;
+    color: #ffcb05;
+    transform: scale(1.05);
+}
+
+
+.details-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    color: #333;
+}
+
+.details-card h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #3b4cca;
+}
+
+.details-card img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    border: 4px solid #ffcb05;
+    background-color: #fff;
+}
+
+.details-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.details-card li {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.details-card li span {
+    font-weight: bold;
+    color: #3b4cca;
+}
+

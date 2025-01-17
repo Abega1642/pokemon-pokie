@@ -1,0 +1,45 @@
+/* Conteneur de la barre de recherche et des boutons */
+.search-container {
+    background-color: rgba(255, 255, 255, 0.8); /* Blanc avec transparence */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombre légère */
+    text-align: center;
+}
+
+/* Style pour les boutons */
+button {
+    background-color: #ff5555; /* Rouge Pokémon */
+    color: #fff; /* Texte blanc */
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #ff4444; /* Rouge plus foncé au survol */
+    transform: translateY(-2px); /* Léger effet de levée */
+}
+
+/* Style pour la barre de recherche */
+.input-search {
+    background-color: rgba(255, 255, 255, 0.7); /* Blanc avec transparence */
+    border: 2px solid #ff5555; /* Bordure rouge Pokémon */
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 16px;
+    width: 80%;
+    margin-bottom: 20px;
+    color: #333; /* Texte sombre */
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+}
+
+.input-search:focus {
+    border-color: #ff4444; /* Bordure plus foncée quand active */
+}
+

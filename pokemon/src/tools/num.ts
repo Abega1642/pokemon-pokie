@@ -6,3 +6,7 @@ export function format(num: number, size: number): string {
 export function getRandomNum(max: number): number {
     return Math.floor((Math.random() * max) + 1);
 }
+
+export const randomId = (): string => {
+    return format(getRandomNum(1000), 3);
+}
