@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { baseUrl, imageUrl } from "../../../tools/url";
-import { randomId } from "../../../tools/num";
+import { randomId, format } from "../../../tools/num";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../dumbs/search";
 import Button from "../dumbs/button";
@@ -14,7 +14,7 @@ export function Content() {
     async function search() {
         try {
             const searchValue = await axios.get(`${baseUrl}${pokemon}`);
-            const imgURI = `${imageUrl}${searchValue.data.id}.png`;
+            const imgURI = `${imageUrl}${format(searchValue.data.id, 3)}.png`;
 
             navigateTo(`/pokemon-details/${pokemon}`, {
                 state: {
